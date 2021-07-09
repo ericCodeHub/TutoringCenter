@@ -12,8 +12,8 @@ namespace TutoringCenter.Models
         public string FirstName { get; set; }
         public string StudentEmail { get; set; }
 
-        public ICollection<Course>Courses { get; set; }
-        public ICollection<Visit> Visits { get; set; }
-        public ICollection<Request>Requests { get; set; }
+        public virtual ICollection<Course>Courses { get; set; }
+        public virtual ICollection<Visit> Visits { get; set; }
+        public virtual ICollection<Request>Requests { get; set; }
     }
 }

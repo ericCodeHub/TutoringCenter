@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,13 +9,15 @@ namespace TutoringCenter.Models
     public class Visit
     {
         public int VisitID { get; set; }
+        //[ForeignKey("Request")]
         public int RequestID { get; set; } //same thing as appointmentID
+        
         public int StudentID { get; set; }
         public int CourseID { get; set; }
         public int TutorID { get; set; }
-        public DateTime VisitDate { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime VisitStartDateTime { get; set; }
+        //public DateTime StartTime { get; set; }
+        public DateTime VisitEndDateTime { get; set; }
         public string TimeZone { get; set; }
         public bool Assignment {get;set;} //did student have assignment to work on?
         public bool PriorCorrespondence { get; set; } //did student send work to tutor ahead of time?
@@ -22,10 +25,10 @@ namespace TutoringCenter.Models
         public bool Invoiced { get; set; }
         public bool? DoNotReport { get; set; }
         public string SessionDetails { get; set; }
-        public Student Student { get; set; }
-        public Request Request { get; set; }
-        public Tutor Tutor { get; set; }
-        public Course Course { get; set; }
+        public virtual Student Student { get; set; }
+        //public virtual Request Request { get; set; }
+        public virtual Tutor Tutor { get; set; }
+        public virtual Course Course { get; set; }
 
         //studentID, TutorID, CourseID, AppointmentID
 

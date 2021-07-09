@@ -23,7 +23,7 @@ namespace TutoringCenter.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<Student>().HasIndex(s => s.StudentEmail).IsUnique();
+            //modelBuilder.Entity<Student>().HasIndex(s => s.StudentEmail).IsUnique();
         }
     }
 }

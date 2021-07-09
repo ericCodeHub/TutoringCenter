@@ -62,27 +62,50 @@ namespace TutoringCenter.DAL
 
             var requests = new List<Request>
             {
-                new Request{RequestDate=DateTime.Parse("2020-09-01"), RequestTime=DateTime.Parse("09:00:00"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Undeclared", RequestType="phone", Instructor="Charles Smith", Required=false, AppointmentTime=DateTime.Parse("13:00:00"), AppointmentDate=DateTime.Parse("2020-15-01"), StudentID=1,CourseID=3},
+                new Request{RequestDate= new DateTime(2020, 1, 9, 9, 0, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 9, 9, 0, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Undeclared", RequestType="phone", Instructor="Charles Smith", Required=false, AppointmentTime=new DateTime(2020, 1, 15, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 15, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=1,CourseID=3},
 
-                new Request{RequestDate=DateTime.Parse("2020-10-01"), RequestTime=DateTime.Parse("09:00:00"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="CJM", RequestType="phone", Instructor="JoJo Johnson", Required=false, AppointmentTime=DateTime.Parse("13:00:00"), AppointmentDate=DateTime.Parse("2020-16-01"), StudentID=2,CourseID=1},
+                new Request{RequestDate=new DateTime(2020, 1,10, 9, 0, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1,10, 9, 0, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="CJM", RequestType="phone", Instructor="JoJo Johnson", Required=false, AppointmentTime=new DateTime(2020, 1,16, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1,16, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=2,CourseID=1},
 
-                new Request{RequestDate=DateTime.Parse("2020-12-01"), RequestTime=DateTime.Parse("09:24:00"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="phone", Instructor="Robert Pickle", Required=true, AppointmentTime=DateTime.Parse("13:00:00"), AppointmentDate=DateTime.Parse("2020-18-01"), StudentID=3,CourseID=2},
+                //new DateTime(2020, 1,16, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1,16, 13, 0, 0).ToString("HH:mm:ss")
 
-                new Request{RequestDate=DateTime.Parse("2020-16-01"), RequestTime=DateTime.Parse("11:11:00"), TimeZone="Central", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="phone", Instructor="Wanda Stark", Required=false, AppointmentTime=DateTime.Parse("13:00:00"), AppointmentDate=DateTime.Parse("2020-19-01"), StudentID=4,CourseID=2},
+                new Request{RequestDate=new DateTime(2020, 1, 12, 9, 24, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 12, 9, 24, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="phone", Instructor="Robert Pickle", Required=true, AppointmentTime=new DateTime(2020, 1, 18, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1,18, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=3,CourseID=2},
 
-                new Request{RequestDate=DateTime.Parse("2020-17-01"), RequestTime=DateTime.Parse("10:23:00"), TimeZone="Mountain", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="video", Instructor="Graham Carlson", Required=true, AppointmentTime=DateTime.Parse("13:00:00"), AppointmentDate=DateTime.Parse("2020-21-01"), StudentID=3,CourseID=4},
+                //DateTime.Parse("2020-12-01")
+                //new DateTime(2020, 1, 12, 9, 24, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 12, 9, 24, 0).ToString("HH:mm:ss")
+                //new DateTime(2020, 1,18, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 18, 13, 0, 0).ToString("HH:mm:ss")
+
+                new Request{RequestDate=new DateTime(2020, 1, 16, 11, 11, 0).ToString("yyyy-MM-dd"), RequestTime= new DateTime(020, 1, 16, 11, 11, 0).ToString("HH:mm:ss"), TimeZone="Central", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="phone", Instructor="Wanda Stark", Required=false, AppointmentTime=new DateTime(2020, 1, 19, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 19, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=4,CourseID=2},
+
+                //DateTime.Parse("2020-16-01")
+                //new DateTime(2020, 1, 16, 11, 11, 0).ToString("yyyy-MM-dd"), new DateTime(020, 1, 16, 11, 11, 0).ToString("HH:mm:ss")
+                //new DateTime(2020, 1, 19, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 19, 13, 0, 0).ToString("HH:mm:ss")
+
+                new Request{RequestDate=new DateTime(2020, 1, 17, 10, 23, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 17, 10, 23, 0).ToString("HH:mm:ss"), TimeZone="Mountain", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="video", Instructor="Graham Carlson", Required=true, AppointmentTime=new DateTime(2020, 1, 21, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 21, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=3,CourseID=4},
+
+                //DateTime.Parse("2020-17-01")
+                //new DateTime(2020, 1, 17, 10, 23, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 17, 10, 23, 0).ToString("HH:mm:ss")
+                //new DateTime(2020, 1, 21, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 21, 13, 0, 0).ToString("HH:mm:ss")
 
             };
             requests.ForEach(r => context.Requests.Add(r));
             context.SaveChanges();
 
+            var myDate1a = new DateTime(2020, 1, 15, 13, 0, 0);
+            var myDate2a = new DateTime(2020, 1, 15, 13, 42, 0);
+            var myDate1b = new DateTime(2020, 1, 16, 13, 0, 0);
+            var myDate2b = new DateTime(2020, 1, 16, 13, 35, 0);
+            var myDate1c = new DateTime(2020, 1, 18, 13, 0, 0);
+            var myDate2c = new DateTime(2020, 1, 18, 13, 30, 0);
+
             var visits = new List<Visit>
             {
-                new Visit{RequestID=1,VisitDate=DateTime.Parse("2020-15-01"), StartTime=DateTime.Parse("13:00:00"), EndTime=DateTime.Parse("13:42:00"), TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewd his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=1, CourseID=3, TutorID=4},
+                new Visit{RequestID=1,VisitStartDateTime=myDate1a, VisitEndDateTime=myDate2a, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=1, CourseID=3, TutorID=4},
 
-                new Visit{RequestID=2,VisitDate=DateTime.Parse("2020-16-01"), StartTime=DateTime.Parse("13:00:00"), EndTime=DateTime.Parse("13:35:00"), TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewd his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=2, CourseID=1, TutorID=2},
+                //new DateTime(2020, 1, 15, 13, 0, 0).ToString("yyyy-MM-dd")
 
-                new Visit{RequestID=1,VisitDate=DateTime.Parse("2020-18-01"), StartTime=DateTime.Parse("13:00:00"), EndTime=DateTime.Parse("13:30:00"), TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewd his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
+                new Visit{RequestID=2,VisitStartDateTime=myDate2a, VisitEndDateTime=myDate2b, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=2, CourseID=1, TutorID=3},
+
+                new Visit{RequestID=3,VisitStartDateTime=myDate1c, VisitEndDateTime=myDate2c, TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
             };
 
             visits.ForEach(v => context.Visits.Add(v));
