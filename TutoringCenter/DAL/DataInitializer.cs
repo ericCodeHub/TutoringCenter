@@ -57,7 +57,7 @@ namespace TutoringCenter.DAL
                 new Tutor{TutorLast="Kent", TutorFirst="Bruce", TutorEmail="bruce.kent@myschool.edu"},
             };
 
-            terms.ForEach(t => context.Tutors.Add(t));
+            tutors.ForEach(t => context.Tutors.Add(t));
             context.SaveChanges();
 
             var requests = new List<Request>
@@ -85,7 +85,7 @@ namespace TutoringCenter.DAL
                 new Visit{RequestID=1,VisitDate=DateTime.Parse("2020-18-01"), StartTime=DateTime.Parse("13:00:00"), EndTime=DateTime.Parse("13:30:00"), TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewd his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
             };
 
-            visits.ForEach(v => context.Requests.Add(v));
+            visits.ForEach(v => context.Visits.Add(v));
             context.SaveChanges();
         }
     }
