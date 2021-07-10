@@ -33,6 +33,53 @@
         <dd>
             @Html.DisplayFor(model => model.StudentEmail)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Visits)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Visit ID</th>
+                    <th>Visit Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Course</th>
+                    <th>Tutor</th>
+                    <th>Session Details</th>
+                </tr>
+                @foreach (var item in Model.Visits)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VisitID)
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:MM/dd/yyyy}", item.VisitStartDateTime))
+                    @*@Html.DisplayFor(modelItem => item.VisitStartDateTime.ToString("yyyy-MM-dd"))*@
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:hh:mm:ss tt}", item.VisitStartDateTime))
+                    @*@Html.DisplayFor(modelItem => item.VisitStartDateTime)*@
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:hh:mm:ss tt}", item.VisitEndDateTime))
+                    @*@Html.DisplayFor(modelItem => item.VisitEndDateTime)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.CourseSignature)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Tutor.TutorEmail)*@
+                    @Html.DisplayFor(modelItem => item.Tutor.TutorFirst) @Html.DisplayFor(modelItem => item.Tutor.TutorLast)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SessionDetails)
+                </td>
+            </tr>
+                }
+            </table>
+
+        </dd>
 
     </dl>
 </div>
