@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TutoringCenter.DAL;
 using TutoringCenter.Models;
+using PagedList;
 
 namespace TutoringCenter.Controllers
 {
@@ -16,9 +18,56 @@ namespace TutoringCenter.Controllers
         private CenterContext db = new CenterContext();
 
         // GET: Student
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, string emailString, int? page)
         {
-            return View(db.Students.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.EmailSortParm = sortOrder == "StudentEmail" ? "email_desc" : "StudentEmail";
+            
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var students = from s in db.Students
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
+            } 
+            /*else if(!String.IsNullOrEmpty(emailString))
+            {
+                students = students.Where(e => e.StudentEmail.Contains(emailString));
+            }*/
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "StudentEmail":
+                    students = students.OrderBy(s => s.StudentEmail);
+                    break;
+                case "email_desc":
+                    students = students.OrderByDescending(s => s.StudentEmail);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
+
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Student/Details/5
@@ -49,11 +98,19 @@ namespace TutoringCenter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,LastName,FirstName,StudentEmail")] Student student)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Students.Add(student);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Students.Add(student);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator");
             }
 
             return View(student);
@@ -77,25 +134,45 @@ namespace TutoringCenter.Controllers
         // POST: Student/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,LastName,FirstName,StudentEmail")] Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(student).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(student);
-        }
-
-        // GET: Student/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var studentToUpdate = db.Students.Find(id);
+            if (TryUpdateModel(studentToUpdate, "", new string[] { "LastName", "FirstName", "StudentEmail" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+           
+            return View(studentToUpdate);
+        }
+    
+
+        // GET: Student/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError=false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Student student = db.Students.Find(id);
             if (student == null)
@@ -106,13 +183,22 @@ namespace TutoringCenter.Controllers
         }
 
         // POST: Student/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
-            db.SaveChanges();
+            try
+            {
+                Student student = db.Students.Find(id);
+                db.Students.Remove(student);
+                db.SaveChanges();
+                
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 

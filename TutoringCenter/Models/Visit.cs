@@ -18,6 +18,11 @@ namespace TutoringCenter.Models
         public DateTime VisitStartDateTime { get; set; }
         //public DateTime StartTime { get; set; }
         public DateTime VisitEndDateTime { get; set; }
+        public TimeSpan VisitDuration
+        {
+            get { return VisitEndDateTime.Subtract(VisitStartDateTime); }
+            private set { }
+        }
         public string TimeZone { get; set; }
         public bool Assignment {get;set;} //did student have assignment to work on?
         public bool PriorCorrespondence { get; set; } //did student send work to tutor ahead of time?

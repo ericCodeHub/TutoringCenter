@@ -43,6 +43,7 @@
                     <th>Visit Date</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Duration</th>
                     <th>Course</th>
                     <th>Tutor</th>
                     <th>Session Details</th>
@@ -64,6 +65,10 @@
                 <td>
                     @Convert.ToString(string.Format("{0:hh:mm:ss tt}", item.VisitEndDateTime))
                     @*@Html.DisplayFor(modelItem => item.VisitEndDateTime)*@
+                </td>
+                <td>
+                    
+                    @Convert.ToString(string.Format(@"{0:hh\:mm}", item.VisitDuration))
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.CourseSignature)

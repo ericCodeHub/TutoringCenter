@@ -14,12 +14,12 @@ namespace TutoringCenter.DAL
             var students = new List<Student>
             {
                 new Student{FirstName="Carson",LastName="Alexander",StudentEmail="alex.carson@myschool.edu"},
-                new Student{FirstName="Meredith",LastName="Alonso",StudentEmail="meredith.alonso@myschool.edu"},
-                new Student{FirstName="Arturo",LastName="Anand",StudentEmail="art.anand@myschool.edu"},
+                new Student{FirstName="Meredith",LastName="Alonso",StudentEmail="meredith.alonso@myschool.edu"},                
                 new Student{FirstName="Gytis",LastName="Barzdukas",StudentEmail="gytis.barzdukas@myschool.edu"},
                 new Student{FirstName="Yan",LastName="Li",StudentEmail="yan.li@myschool.edu"},
                 new Student{FirstName="Peggy",LastName="Justice",StudentEmail="peggy.justice@myschool.edu"},
                 new Student{FirstName="Laura",LastName="Norman",StudentEmail="laura.norman@myschool.edu"},
+                new Student{FirstName="Arturo",LastName="Anand",StudentEmail="art.anand@myschool.edu"},
 
             };
 
@@ -103,7 +103,7 @@ namespace TutoringCenter.DAL
 
                 //new DateTime(2020, 1, 15, 13, 0, 0).ToString("yyyy-MM-dd")
 
-                new Visit{RequestID=2,VisitStartDateTime=myDate2a, VisitEndDateTime=myDate2b, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=2, CourseID=1, TutorID=3},
+                new Visit{RequestID=2,VisitStartDateTime=myDate1b, VisitEndDateTime=myDate2b, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=2, CourseID=1, TutorID=3},
 
                 new Visit{RequestID=3,VisitStartDateTime=myDate1c, VisitEndDateTime=myDate2c, TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
             };

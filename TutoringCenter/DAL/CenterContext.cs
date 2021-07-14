@@ -24,6 +24,8 @@ namespace TutoringCenter.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //modelBuilder.Entity<Student>().HasIndex(s => s.StudentEmail).IsUnique();
+            
+
         }
     }
 }
