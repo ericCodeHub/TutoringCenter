@@ -1,7 +1,30 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@model IEnumerable<TutoringCenter.ViewModels.AppointmentDataGroup>
+
+@{
+    ViewBag.Title = "Appointment Statistics";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<table>
+    <tr>
+        <th>
+            Request Date
+        </th>
+        <th>
+            Appointment Requests
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @item.RequestCount
+            </td>
+        </tr>
+    }
+</table>

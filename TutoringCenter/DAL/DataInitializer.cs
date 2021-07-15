@@ -60,31 +60,41 @@ namespace TutoringCenter.DAL
             tutors.ForEach(t => context.Tutors.Add(t));
             context.SaveChanges();
 
+            var reqDate1a = new DateTime(2020, 1, 24, 13, 10, 0);
+            var reqDate1b = new DateTime(2020, 1, 29, 14, 00, 0);
+            var reqDate2a = new DateTime(2020, 1, 20, 9, 23, 0);
+            var reqDate2b = new DateTime(2020, 1, 29, 9, 00, 0);
+
             var requests = new List<Request>
             {
-                new Request{RequestDate= new DateTime(2020, 1, 9, 9, 0, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 9, 9, 0, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Undeclared", RequestType="phone", Instructor="Charles Smith", Required=false, AppointmentTime=new DateTime(2020, 1, 15, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 15, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=1,CourseID=3},
+                new Request{RequestDate= new DateTime(2020, 1, 9, 9, 0, 0), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Undeclared", RequestType="phone", Instructor="Charles Smith", Required=false, Appointment=new DateTime(2020, 1, 15, 13, 0, 0), StudentID=1,CourseID=3},
 
-                new Request{RequestDate=new DateTime(2020, 1,10, 9, 0, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1,10, 9, 0, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="CJM", RequestType="phone", Instructor="JoJo Johnson", Required=false, AppointmentTime=new DateTime(2020, 1,16, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1,16, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=2,CourseID=1},
+                new Request{RequestDate=new DateTime(2020, 1,10, 9, 0, 0), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="CJM", RequestType="phone", Instructor="JoJo Johnson", Required=false, Appointment=new DateTime(2020, 1,16, 13, 0, 0), StudentID=2,CourseID=1},
 
                 //new DateTime(2020, 1,16, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1,16, 13, 0, 0).ToString("HH:mm:ss")
 
-                new Request{RequestDate=new DateTime(2020, 1, 12, 9, 24, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 12, 9, 24, 0).ToString("HH:mm:ss"), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="phone", Instructor="Robert Pickle", Required=true, AppointmentTime=new DateTime(2020, 1, 18, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1,18, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=3,CourseID=2},
+                new Request{RequestDate=new DateTime(2020, 1, 12, 9, 24, 0), TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="phone", Instructor="Robert Pickle", Required=true, Appointment=new DateTime(2020, 1, 18, 13, 0, 0), StudentID=3,CourseID=2},
 
                 //DateTime.Parse("2020-12-01")
                 //new DateTime(2020, 1, 12, 9, 24, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 12, 9, 24, 0).ToString("HH:mm:ss")
                 //new DateTime(2020, 1,18, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 18, 13, 0, 0).ToString("HH:mm:ss")
 
-                new Request{RequestDate=new DateTime(2020, 1, 16, 11, 11, 0).ToString("yyyy-MM-dd"), RequestTime= new DateTime(020, 1, 16, 11, 11, 0).ToString("HH:mm:ss"), TimeZone="Central", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="phone", Instructor="Wanda Stark", Required=false, AppointmentTime=new DateTime(2020, 1, 19, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 19, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=4,CourseID=2},
+                new Request{RequestDate=new DateTime(2020, 1, 16, 11, 11, 0), TimeZone="Central", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="phone", Instructor="Wanda Stark", Required=false,Appointment=new DateTime(2020, 1, 19, 13, 0, 0), StudentID=4,CourseID=2},
 
                 //DateTime.Parse("2020-16-01")
                 //new DateTime(2020, 1, 16, 11, 11, 0).ToString("yyyy-MM-dd"), new DateTime(020, 1, 16, 11, 11, 0).ToString("HH:mm:ss")
                 //new DateTime(2020, 1, 19, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 19, 13, 0, 0).ToString("HH:mm:ss")
 
-                new Request{RequestDate=new DateTime(2020, 1, 17, 10, 23, 0).ToString("yyyy-MM-dd"), RequestTime=new DateTime(2020, 1, 17, 10, 23, 0).ToString("HH:mm:ss"), TimeZone="Mountain", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="video", Instructor="Graham Carlson", Required=true, AppointmentTime=new DateTime(2020, 1, 21, 13, 0, 0).ToString("HH:mm:ss"), AppointmentDate=new DateTime(2020, 1, 21, 13, 0, 0).ToString("yyyy-MM-dd"), StudentID=3,CourseID=4},
+                new Request{RequestDate=new DateTime(2020, 1, 17, 10, 23, 0), TimeZone="Mountain", StudentPhone="555-555-5555", StudentMajor="Education", RequestType="video", Instructor="Graham Carlson", Required=true, Appointment=new DateTime(2020, 1, 21, 13, 0, 0), StudentID=3,CourseID=4},
 
                 //DateTime.Parse("2020-17-01")
                 //new DateTime(2020, 1, 17, 10, 23, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 17, 10, 23, 0).ToString("HH:mm:ss")
                 //new DateTime(2020, 1, 21, 13, 0, 0).ToString("yyyy-MM-dd"), new DateTime(2020, 1, 21, 13, 0, 0).ToString("HH:mm:ss")
+
+                new Request{RequestDate=reqDate1a, TimeZone="Mountain", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="video", Instructor="Graham Carlson", Required=true,Appointment=reqDate1b, StudentID=4,CourseID=4},
+
+                new Request{RequestDate=reqDate2a, TimeZone="Eastern", StudentPhone="555-555-5555", StudentMajor="Physics", RequestType="phone", Instructor="Norbert Nordstrom", Required=false, Appointment=reqDate2b, StudentID=7,CourseID=1},
+
 
             };
             requests.ForEach(r => context.Requests.Add(r));

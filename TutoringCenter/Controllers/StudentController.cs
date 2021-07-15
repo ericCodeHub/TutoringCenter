@@ -25,16 +25,23 @@ namespace TutoringCenter.Controllers
             ViewBag.EmailSortParm = sortOrder == "StudentEmail" ? "email_desc" : "StudentEmail";
             
 
-            if (searchString != null)
+            if (searchString != null && emailString != null)
             {
                 page = 1;
             }
             else
             {
-                searchString = currentFilter;
+                if (string.IsNullOrEmpty(searchString))
+                {
+                    searchString = currentFilter;
+                } else if (string.IsNullOrEmpty(emailString))
+                {
+                    emailString = currentFilter;
+                }                
+                
             }
 
-            ViewBag.CurrentFilter = searchString;
+            
 
             var students = from s in db.Students
                            select s;
@@ -42,11 +49,13 @@ namespace TutoringCenter.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
+                ViewBag.CurrentFilter = searchString;
             } 
-            /*else if(!String.IsNullOrEmpty(emailString))
+            else if(!String.IsNullOrEmpty(emailString))
             {
                 students = students.Where(e => e.StudentEmail.Contains(emailString));
-            }*/
+                ViewBag.CurrentFilter = emailString;
+            }
 
             switch (sortOrder)
             {

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TutoringCenter.DAL;
+using TutoringCenter.ViewModels;
 
 namespace TutoringCenter.Controllers
 {
     public class HomeController : Controller
     {
+        private CenterContext db = new CenterContext();
         public ActionResult Index()
         {
             return View();
@@ -15,9 +18,15 @@ namespace TutoringCenter.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            IQueryable<AppointmentDataGroup> data = from request in db.Requests
+                                                    group request by request.RequestDate into dateGroup
+                                                    select new AppointmentDataGroup()
+                                                    {
+                                                        RequestDate = dateGroup.Key,
+                                                        RequestCount = dateGroup.Count()
+                                                    };
 
-            return View();
+            return View(data.ToList());
         }
 
         public ActionResult Contact()
@@ -25,6 +34,11 @@ namespace TutoringCenter.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

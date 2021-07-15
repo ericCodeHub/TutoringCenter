@@ -1,6 +1,7 @@
 ﻿
 @model PagedList.IPagedList<TutoringCenter.Models.Student>
 @using PagedList.Mvc;
+
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
@@ -20,13 +21,13 @@
         <input type="submit" value="Search" />
     </p>
 }
-@*@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+@using (Html.BeginForm("Index", "Student", FormMethod.Get))
 {
     <p>
         Find by email: @Html.TextBox("EmailString", ViewBag.EmailFilter as string)
         <input type="submit" value="Search" />
     </p>
-}*@
+}
 <table class="table">
     <tr>
         <th>
@@ -38,7 +39,7 @@
             
         </th>
         <th>
-            @Html.ActionLink("Student Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.NameFilter })
+            @Html.ActionLink("Student Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter=ViewBag.EmailFilter })
         </th>
         <th></th>
     </tr>
@@ -80,4 +81,4 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index", 
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.NameFilter}))
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
