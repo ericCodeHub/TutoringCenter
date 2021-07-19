@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TutoringCenter.DAL;
 using TutoringCenter.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace TutoringCenter.Controllers
 {
@@ -116,7 +113,7 @@ namespace TutoringCenter.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator");
@@ -160,7 +157,7 @@ namespace TutoringCenter.Controllers
                     return RedirectToAction("Index");
 
                 }
-                catch (DataException /* dex */)
+                catch (RetryLimitExceededException /* dex */)
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
 
@@ -203,7 +200,7 @@ namespace TutoringCenter.Controllers
                 db.SaveChanges();
                 
             }
-            catch (DataException /* dex */)
+            catch (RetryLimitExceededException /* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
