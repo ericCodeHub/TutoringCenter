@@ -8,5 +8,6 @@ namespace TutoringCenter.Models
     public class Term
     {
         public string TermID { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

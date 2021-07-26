@@ -108,7 +108,9 @@ namespace TutoringCenter.Migrations
 
 
             };
-            /*
+            
+            
+             /* I don't think this is necessary because more than one request can exist for each student in each course.
             foreach (Request r in requests)
             {
                 var requestInDataBase = context.Requests.Where(
@@ -116,11 +118,12 @@ namespace TutoringCenter.Migrations
                          s.Course.CourseID == r.Course.CourseID).SingleOrDefault();
                 if (requestInDataBase == null)
                 {
-                    context.Requests.Add(e);
+                    context.Requests.Add(r);
                 }
             }
             */
-            requests.ForEach(r => context.Requests.Add(r));
+            
+            requests.ForEach(r => context.Requests.AddOrUpdate(r));
             context.SaveChanges();
 
             var myDate1a = new DateTime(2020, 1, 15, 13, 0, 0);
@@ -141,7 +144,7 @@ namespace TutoringCenter.Migrations
                 new Visit{RequestID=3,VisitStartDateTime=myDate1c, VisitEndDateTime=myDate2c, TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
             };
 
-            visits.ForEach(v => context.Visits.Add(v));
+            visits.ForEach(v => context.Visits.AddOrUpdate(v));
             context.SaveChanges();
         }
     }

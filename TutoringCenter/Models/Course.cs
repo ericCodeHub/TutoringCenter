@@ -13,7 +13,7 @@ namespace TutoringCenter.Models
         public string Instructor { get; set; }
 
         public virtual ICollection<Term>Terms { get; set; }
-        public virtual ICollection<Student>Students { get; set; }
+        //public virtual ICollection<Student>Students { get; set; }
         public virtual ICollection<Visit> Visits { get; set; }
     }
 }

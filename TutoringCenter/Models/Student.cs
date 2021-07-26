@@ -20,7 +20,7 @@ namespace TutoringCenter.Models
         [Index(nameof(StudentEmail), IsUnique = true)]
         public string StudentEmail { get; set; }
 
-        public virtual ICollection<Course>Courses { get; set; }
+        //public virtual ICollection<Course>Courses { get; set; }
         public virtual ICollection<Visit> Visits { get; set; }
         public virtual ICollection<Request>Requests { get; set; }
 
