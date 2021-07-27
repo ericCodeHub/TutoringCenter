@@ -1,0 +1,122 @@
+﻿@model TutoringCenter.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Request</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.CourseSignature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.CourseSignature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutor.TutorFirst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutor.TutorFirst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit.TimeZone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visit.TimeZone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeZone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeZone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentMajor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentMajor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Required)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Required)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Appointment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appointment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -11,6 +11,7 @@ namespace TutoringCenter.DAL
 
         public CenterContext() : base("CenterContext")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Student>Students { get; set; }

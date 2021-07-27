@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace TutoringCenter.Models
         public DateTime VisitStartDateTime { get; set; }
         //public DateTime StartTime { get; set; }
         public DateTime VisitEndDateTime { get; set; }
+        [Display(Name = "Duration")]
         public TimeSpan VisitDuration
         {
             get { return VisitEndDateTime.Subtract(VisitStartDateTime); }
@@ -25,7 +27,9 @@ namespace TutoringCenter.Models
         }
         public string TimeZone { get; set; }
         public bool Assignment {get;set;} //did student have assignment to work on?
+        [Display(Name = "Prior Correspondence")]
         public bool PriorCorrespondence { get; set; } //did student send work to tutor ahead of time?
+        [Display(Name ="Notified")]
         public bool StudentNotified { get; set; }
         public bool Invoiced { get; set; }
         public bool? DoNotReport { get; set; }

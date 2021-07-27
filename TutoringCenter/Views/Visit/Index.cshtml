@@ -1,0 +1,113 @@
+﻿@model IEnumerable<TutoringCenter.Models.Visit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseSignature)
+        </th>
+        <th>
+            Student
+            @*@Html.DisplayNameFor(model => model.Student.LastName)*@
+        </th>
+        <th>
+            Tutor
+            @*@Html.DisplayNameFor(model => model.Tutor.TutorFirst)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestID)
+        </th>
+        <th>
+            Visit Date
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.VisitStartDateTime)*@
+            Start Time
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.VisitEndDateTime)*@
+            End Time
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisitDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeZone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriorCorrespondence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentNotified)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.SessionDetails)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseSignature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tutor.TutorFirst)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestID)
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:MM/dd/yyyy}",item.VisitStartDateTime))
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:HH:mm}", item.VisitStartDateTime))
+            @*@Html.DisplayFor(modelItem => item.VisitStartDateTime)*@
+        </td>
+        <td>
+            @Convert.ToString(string.Format("{0:HH:mm}", item.VisitEndDateTime))
+            @*@Html.DisplayFor(modelItem => item.VisitEndDateTime)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisitDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeZone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assignment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriorCorrespondence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentNotified)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionDetails)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VisitID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VisitID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VisitID })
+        </td>
+    </tr>
+}
+
+</table>
