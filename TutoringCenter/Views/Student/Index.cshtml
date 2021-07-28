@@ -47,72 +47,9 @@
         </th>
         <th></th>
     </tr>
-    @*<tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentEmail)
-                </th>
-                <th></th>
-            </tr>
+    
 
-
-            @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Students.Select(x => x.LastName))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Students.Select(x => x.FirstName))
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Students.Select(x => x.StudentEmail))
-                    </td>
-                    <td>
-                        @Html.ActionLink("Select", "Index", new { id = item.Students.Select(x => x.StudentID) }) |
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Students.Select(x => x.StudentID) }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Students.Select(x => x.StudentID) }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Students.Select(x => x.StudentID) })
-                    </td>
-                    </tr>
-                    }
-
-        @foreach (var item in Model.Students)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StudentEmail)
-
-                            </td>
-                            <td>
-                                @Html.ActionLink("Select", "Index", new { id = item.StudentID }) |
-                                @Html.ActionLink("Edit", "Edit", new { id = item.StudentID}) |
-                                @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
-                            </td>
-                        </tr>
-                    }
-    *@
-
-
-
-
-    @foreach (var item in @ViewBag.Students)
+    @foreach (var item in @ViewBag.StudentView)
     {
         <tr>
             <td>
@@ -139,7 +76,89 @@
 
 </table>
 <br />
+
 Page @(ViewBag.StudentView.PageCount < ViewBag.StudentView.PageNumber ? 0 : ViewBag.StudentView.PageNumber) of @ViewBag.StudentView.PageCount
 
-@*@Html.PagedListPager(Model.Students.Count(), page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+@Html.PagedListPager((PagedList.IPagedList)ViewBag.StudentView, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+@if (Model.Requests != null)
+            {
+                <h3>
+                    Tutoring Requests from Student
+                </h3>
+
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>
+                            Item
+                        </th>
+                        <th>
+                            Item
+                        </th>
+                        <th>
+                            Item
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.Requests)
+                    {
+                        string selectedRow = "";
+                        if (item.RequestID == ViewBag.CourseID)
+                        {
+                            selectedRow = "success";
+                        }
+                        <tr class="@selectedRow" valign="top">
+                            <td>
+                                @Html.ActionLink("Select", "Index", new { requestID = item.RequestID })
+                            </td>
+                            <td>
+                                @item.RequestDate
+                            </td>
+                            <td>
+                                @item.Tutor.TutorFirst @item.Tutor.TutorLast
+                            </td>
+                            <td>
+                                @item.Course.CourseSignature
+                            </td>
+                            <td>
+                                @item.Instructor
+                            </td>
+                            <td>
+                                @item.Appointment
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+
+@if (Model.Visits != null)
+            {
+                <h3>
+                    Tutoring Visits for Student
+                </h3>
+                
+                <table class="table">
+                    <tr>
+                        <th>
+                            item
+                        </th>
+                        <th>
+                            item
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Visits)
+                {
+                    <tr>
+                        <td>
+                            @Convert.ToString(string.Format("{0:MM/dd/yyyy}", item.VisitStartDateTime))
+                        </td>
+                        <td>
+                            @Convert.ToString()
+                        </td>
+                    </tr>
+                }
+                </table>
+            }

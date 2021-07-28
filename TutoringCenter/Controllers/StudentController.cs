@@ -92,7 +92,7 @@ namespace TutoringCenter.Controllers
 
             ViewBag.Students = students;
             
-            int pageSize = 3;
+            int pageSize = 2;
             int pageNumber = (page ?? 1);
             ViewBag.StudentView = students.ToPagedList(pageNumber, pageSize);
 
