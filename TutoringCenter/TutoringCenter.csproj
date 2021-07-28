@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\StudentController - Original.cs" />
     <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="DAL\CenterConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AppointmentDataGroup.cs" />
+    <Compile Include="ViewModels\StudentIndexData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -223,6 +225,7 @@
     <Content Include="Views\Visit\Details.cshtml" />
     <Content Include="Views\Visit\Edit.cshtml" />
     <Content Include="Views\Visit\Index.cshtml" />
+    <Content Include="Views\Student\Index - Original.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

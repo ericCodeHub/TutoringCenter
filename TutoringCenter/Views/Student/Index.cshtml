@@ -1,6 +1,10 @@
-﻿
-@model PagedList.IPagedList<TutoringCenter.Models.Student>
+﻿@*
+    @model PagedList.IPagedList<TutoringCenter.ViewModels.StudentIndexData>
+
+*@
+@model TutoringCenter.ViewModels.StudentIndexData
 @using PagedList.Mvc;
+
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -31,44 +35,101 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter=ViewBag.NameFilter })
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.NameFilter })
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.FirstName)*@
-            First Name 
-            
+            First Name
+
         </th>
         <th>
-            @Html.ActionLink("Student Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter=ViewBag.EmailFilter })
+            @Html.ActionLink("Student Email", "Index", new { sortOrder = ViewBag.EmailSortParm, currentFilter = ViewBag.EmailFilter })
         </th>
         <th></th>
     </tr>
     @*<tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentEmail)
-            </th>
-            <th></th>
-        </tr>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentEmail)
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Students.Select(x => x.LastName))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Students.Select(x => x.FirstName))
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Students.Select(x => x.StudentEmail))
+                    </td>
+                    <td>
+                        @Html.ActionLink("Select", "Index", new { id = item.Students.Select(x => x.StudentID) }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Students.Select(x => x.StudentID) }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Students.Select(x => x.StudentID) }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Students.Select(x => x.StudentID) })
+                    </td>
+                    </tr>
+                    }
+
+        @foreach (var item in Model.Students)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudentEmail)
+
+                            </td>
+                            <td>
+                                @Html.ActionLink("Select", "Index", new { id = item.StudentID }) |
+                                @Html.ActionLink("Edit", "Edit", new { id = item.StudentID}) |
+                                @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
+                            </td>
+                        </tr>
+                    }
+    *@
+
+
+
+
+    @foreach (var item in @ViewBag.Students)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Convert.ToString(item.LastName)
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Convert.ToString(item.FirstName)
+
+            </td>
+
+            <td>
+                @Convert.ToString(item.StudentEmail)
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentEmail)
-            </td>
-            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.StudentID }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
@@ -78,7 +139,7 @@
 
 </table>
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Page @(ViewBag.StudentView.PageCount < ViewBag.StudentView.PageNumber ? 0 : ViewBag.StudentView.PageNumber) of @ViewBag.StudentView.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", 
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+@*@Html.PagedListPager(Model.Students.Count(), page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

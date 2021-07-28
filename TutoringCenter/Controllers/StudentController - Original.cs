@@ -5,42 +5,22 @@ using System.Net;
 using System.Web.Mvc;
 using TutoringCenter.DAL;
 using TutoringCenter.Models;
-using TutoringCenter.ViewModels;
 using PagedList;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 namespace TutoringCenter.Controllers
 {
-    public class StudentController : Controller
+    public class StudentControllerOriginal : Controller
     {
         private CenterContext db = new CenterContext();
 
         // GET: Student
-        public ActionResult Index(int? id, string sortOrder, string currentFilter, string searchString, string emailString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, string emailString, int? page)
         {
-
-            var viewModel = new StudentIndexData();
-
-            
-
-            viewModel.Students = db.Students
-                .Include(i => i.Requests)
-                //.Include(i => i.Requests.Select(r => r.StudentID))
-                //.Include(i => i.Visits.Select(v => v.StudentID))
-                .OrderBy(i => i.LastName);
-
-            if (id != null)
-            {
-                ViewBag.StudentID = id.Value;
-                ViewBag.StudentName = db.Students.Find(id).FirstName + " " + db.Students.Find(id).LastName;
-                viewModel.Requests = viewModel.Students.Where(i => i.StudentID == id.Value).First().Requests;
-                viewModel.Visits = viewModel.Students.Where(i => i.StudentID == id.Value).First().Visits;
-            }
-
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.EmailSortParm = sortOrder == "StudentEmail" ? "email_desc" : "StudentEmail";
+            
 
             if (searchString != null && emailString != null)
             {
@@ -60,7 +40,7 @@ namespace TutoringCenter.Controllers
 
             
 
-            var students = from s in viewModel.Students
+            var students = from s in db.Students
                            select s;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -90,15 +70,10 @@ namespace TutoringCenter.Controllers
                     break;
             }
 
-            ViewBag.Students = students;
-            
+
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            ViewBag.StudentView = students.ToPagedList(pageNumber, pageSize);
-
-            return View(viewModel);
-            //return View(viewModel.ToPagedList(pageNumber, pageSize));
-            //return View(students.ToPagedList(pageNumber,pageSize));
+            return View(students.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Student/Details/5
