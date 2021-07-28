@@ -86,7 +86,7 @@ Page @(ViewBag.StudentView.PageCount < ViewBag.StudentView.PageNumber ? 0 : View
 @if (Model.Requests != null)
             {
                 <h3>
-                    Tutoring Requests from Student
+                    Tutoring Requests from @ViewBag.StudentName
                 </h3>
 
                 <table class="table">
@@ -137,7 +137,7 @@ Page @(ViewBag.StudentView.PageCount < ViewBag.StudentView.PageNumber ? 0 : View
 @if (Model.Visits != null)
             {
                 <h3>
-                    Tutoring Visits for Student
+                    Tutoring Visits for @ViewBag.StudentName
                 </h3>
                 
                 <table class="table">
@@ -156,7 +156,19 @@ Page @(ViewBag.StudentView.PageCount < ViewBag.StudentView.PageNumber ? 0 : View
                             @Convert.ToString(string.Format("{0:MM/dd/yyyy}", item.VisitStartDateTime))
                         </td>
                         <td>
-                            @Convert.ToString()
+                            @Convert.ToString(string.Format("{0:HH:mm}", item.VisitStartDateTime))
+                        </td>
+                        <td>
+                            @Convert.ToString(string.Format("{0:HH:mm}", item.VisitEndDateTime))
+                        </td>
+                        <td>
+                            @item.VisitDuration
+                        </td>
+                        <td>
+                            @item.Tutor.TutorFirst @item.Tutor.TutorLast
+                        </td>
+                        <td>
+                            @item.SessionDetails
                         </td>
                     </tr>
                 }

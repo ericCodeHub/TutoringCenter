@@ -135,13 +135,13 @@ namespace TutoringCenter.Migrations
 
             var visits = new List<Visit>
             {
-                new Visit{RequestID=1,VisitStartDateTime=myDate1a, VisitEndDateTime=myDate2a, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alex and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=1, CourseID=3, TutorID=4},
+                new Visit{RequestID=1,VisitStartDateTime=myDate1a, VisitEndDateTime=myDate2a, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Carson and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=1, CourseID=3, TutorID=4},
 
                 //new DateTime(2020, 1, 15, 13, 0, 0).ToString("yyyy-MM-dd")
 
-                new Visit{RequestID=2,VisitStartDateTime=myDate1b, VisitEndDateTime=myDate2b, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Alonzo and I reviewed his final draft and worked on organization.  He is going to consider some of the suggestions before submitting.", StudentID=2, CourseID=1, TutorID=3},
+                new Visit{RequestID=2,VisitStartDateTime=myDate1b, VisitEndDateTime=myDate2b, TimeZone="Eastern", Assignment=true, PriorCorrespondence=true, StudentNotified=false, Invoiced=false, SessionDetails="Meredith and I reviewed her final draft and worked on organization.  He is going to consider some of the suggestions before submitting.", StudentID=2, CourseID=1, TutorID=3},
 
-                new Visit{RequestID=3,VisitStartDateTime=myDate1c, VisitEndDateTime=myDate2c, TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Gytis and I reviewed his rough draft and worked on organization.  He is going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
+                new Visit{RequestID=3,VisitStartDateTime=myDate1c, VisitEndDateTime=myDate2c, TimeZone="Eastern", Assignment=false, PriorCorrespondence=false, StudentNotified=false, Invoiced=false, SessionDetails="Gytis and I reviewed their rough draft and worked on organization.  They are going to consider some of the suggestions and may return for another session after revising.", StudentID=3, CourseID=2, TutorID=2},
             };
 
             visits.ForEach(v => context.Visits.AddOrUpdate(v));
