@@ -17,7 +17,7 @@ namespace TutoringCenter.Controllers
         private CenterContext db = new CenterContext();
 
         // GET: Student
-        public ActionResult Index(int? id, string sortOrder, string currentFilter, string searchString, string emailString, int? page)
+        public ActionResult Index(int? id, string sortOrder, string currentFilter, string searchString, string emailString, int? page, bool? pageChange)
         {
 
             var viewModel = new StudentIndexData();
@@ -30,7 +30,7 @@ namespace TutoringCenter.Controllers
                 //.Include(i => i.Visits.Select(v => v.StudentID))
                 .OrderBy(i => i.LastName);
 
-            if (id != null)
+            if (id != null && pageChange != true)
             {
                 ViewBag.StudentID = id.Value;
                 ViewBag.StudentName = db.Students.Find(id).FirstName + " " + db.Students.Find(id).LastName;
